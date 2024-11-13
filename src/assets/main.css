@@ -1,0 +1,33 @@
+@import './base.css';
+
+
+
+
+body {
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  color-scheme: dark;
+}
+
+#app {
+  width: 100%;
+  max-width: 1024px;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0 2rem;
+}
+
+input[type="number"] {
+  background-color: var(--vt-c-black-mute) !important;
+}
+
+
+
+.text-blue {
+  color: rgb(108, 142, 255);
+}
+
+.text-indigo {
+  color: rgb(123, 108, 255);
+}
