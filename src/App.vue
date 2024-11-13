@@ -1,17 +1,17 @@
 <script setup>
 import {ref, watch, onMounted, computed} from 'vue'
-const waxLb = ref(1)
-const waxOz = ref(0)
+const waterOz = ref(6)
+const waxOz = ref(5)
 const fLoad = ref(6)
-const endWaxOz = computed(()=> waxOz.value - (waxOz.value*(fLoad.value / 100)))
-const endFOz = computed(()=> waxOz.value * (fLoad.value / 100) )
-onMounted(updateOz)
+const endFOz = computed(()=> waxOz.value - (waxOz.value / (  1 + ( fLoad.value / 100 ))))
+const endWaxOz = computed(()=> waxOz.value / (  1 + ( fLoad.value / 100 )) )
+onMounted(updateWax)
 
-function updateOz(){
-  waxOz.value = waxLb.value * 16
+function updateWax(){
+  waxOz.value = (waterOz.value * .86)
 }
-function updateLb(){
-  waxLb.value = waxOz.value / 16
+function updateWater(){
+  waterOz.value = (waxOz.value / .86)
 }
 </script>
 
@@ -21,12 +21,12 @@ function updateLb(){
     <form class="row g-4">
       <div class="col">
         <div class="mb-2">
-          <label for="">wax in pounds</label>
-          <input @change="updateOz" v-model="waxLb" type="number" class="form-control">
+          <label for="">water in oz</label>
+          <input @input="updateWax" v-model="waterOz" type="number" class="form-control">
         </div>
         <div class="mb-2">
           <label for="">wax in oz</label>
-          <input @change="updateLb" v-model="waxOz" type="number" class="form-control">
+          <input @input="updateWater" v-model="waxOz" type="number" class="form-control">
         </div>
       </div>
       <div class="col">
@@ -37,19 +37,12 @@ function updateLb(){
       </div>
     </form>
     <hr>
-    <section class="d-flex justify-content-between">
-      <div>
-        <div>
-          {{ waxOz }} <i class="mdi mdi-multiplication"></i> 0.{{ fLoad }} = {{ waxOz * (fLoad / 100) }}
-        </div>
-        <div>
-          {{waxOz}} - {{ waxOz * (fLoad / 100) }} = {{endWaxOz}}
-        </div>
-      </div>
-      <div class="text-blue fs-5">
-        <div><i class="mdi mdi-water"></i>{{ endFOz.toFixed(2) }}oz of fragrance</div>
-        <div class="text-indigo"><i class="mdi mdi-dots-hexagon"></i>{{ endWaxOz.toFixed(2) }}oz of wax</div>
-      </div>
+    <section class="text-center my-2">
+      Yields
+    </section>
+    <section class="d-flex justify-content-around fs-4">
+      <div class="text-indigo"><i class="mdi mdi-dots-hexagon"></i>{{ endWaxOz.toFixed(2) }}oz  wax</div>
+        <div class="text-blue"><i class="mdi mdi-water"></i>{{ endFOz.toFixed(2) }}oz fragrance</div>
     </section>
   </main>
 </template>
