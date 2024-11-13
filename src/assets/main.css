@@ -31,3 +31,9 @@ input[type="number"] {
 .text-indigo {
   color: rgb(123, 108, 255);
 }
+
+.muted-text {
+  opacity: .2;
+  font-size: 64px;
+
+}

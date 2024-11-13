@@ -18,6 +18,9 @@ function updateWater(){
 
 <template>
   <main data-bs-theme="dark" class="container">
+    <div class="text-center muted-text">
+      <i class="mdi mdi-candle"></i>
+    </div>
     <form class="row g-4">
       <div class="col">
         <div class="mb-2">
