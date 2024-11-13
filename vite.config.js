@@ -10,7 +10,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
-  base: '.',
+  base: '',
   build: {
     outDir: 'docs'
   },
